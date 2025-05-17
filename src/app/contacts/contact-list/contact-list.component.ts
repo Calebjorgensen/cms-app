@@ -10,7 +10,7 @@ import { Contact } from '../contact.model';
 export class ContactListComponent {
 
     contacts: Contact[] = [
-      new Contact(1, 'R. Kent Jackson', 'jacksonk@byui.edu', 2084963771, '../../assets/images/jacksonk.jpg', null),
-      new Contact(2, 'Rex Barzee', 'barzeer@byui.edu', 2084963768, '', null)
+      new Contact(1, 'R. Kent Jackson', 'jacksonk@byui.edu', 2084963771, 'images/jacksonk.jpg', null),
+      new Contact(2, 'Rex Barzee', 'barzeer@byui.edu', 2084963768, 'images/barzeer.jpg', null)
     ];
 }
