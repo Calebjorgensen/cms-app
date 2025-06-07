@@ -31,6 +31,3 @@ export class MessageListComponent {
   }
 
 }
-
-
-
