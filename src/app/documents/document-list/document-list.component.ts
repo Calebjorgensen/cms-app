@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { Document } from '../document.model';
+import { DocumentService } from '../document.service';
 
 @Component({
   selector: 'app-document-list',
@@ -9,16 +10,17 @@ import { Document } from '../document.model';
 })
 export class DocumentListComponent {
 
-  @Output() selectedDocumentEvent = new EventEmitter<Document>;
 
+  documents: Document[] = [];
 
-  documents: Document[] = [
-    new Document(1, 'Certificate', 'This is a certificate for The company A! ', '....', null),
-    new Document(2, 'PDF', 'This is PDF File', '.1..1', null)
-  ];
+  constructor(private documentService: DocumentService) {}
 
   onSelectedDocument(document: Document) {
-    this.selectedDocumentEvent.emit(document);
+    this.documentService.documentSelectedEvent.emit(document);
+  }
+
+  ngOnInit() {
+    this.documents = this.documentService.getDocuments();
   }
 
 }
