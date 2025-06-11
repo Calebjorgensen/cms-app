@@ -11,20 +11,18 @@ import { MessageService } from '../message.service';
 export class MessageEditComponent {
     currentSender = 'Caleb Jorgensen'
 
-    @ViewChild('id') idInput: ElementRef;
+    
     @ViewChild('subject') subjectInput: ElementRef;
     @ViewChild('msgText') msgTextInput: ElementRef;
-    @ViewChild('sender') senderInput: ElementRef;
+    
 
 
     constructor(private messageService: MessageService) {}
 
   onSendMessage() {
-    const mId = this.idInput.nativeElement.value;
     const mSubject = this.subjectInput.nativeElement.value;
     const mMsgText = this.msgTextInput.nativeElement.value;
-    const mSender = this.senderInput.nativeElement.value;
-    const newMessage = new Message(mId, mSubject, mMsgText, mSender);
+    const newMessage = new Message('', mSubject, mMsgText, '8');
     this.messageService.addMessage(newMessage);
   }
 
