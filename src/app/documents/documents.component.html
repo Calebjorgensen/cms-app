@@ -4,11 +4,9 @@
   </div>
 
   <div class="col-md-4">
-    <app-document-detail
-    *ngIf="selectedDocument; else infoText"
-    [document]="selectedDocument"></app-document-detail>
-    <ng-template #infoText>
+    <router-outlet></router-outlet>
+    <!-- <ng-template #infoText>
       <p>Test</p>
-    </ng-template>
+    </ng-template> -->
   </div>
 </div>
