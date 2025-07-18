@@ -7,9 +7,12 @@
 <hr>
 <div class="row">
     <div class="col-xs-12">
-        <app-contact-item
-        *ngFor="let contactEl of contacts; let i = index"
-        [contact]="contactEl"
-        [index]="i"></app-contact-item>
+        <div *ngFor="let contactEl of contacts; let i = index"
+                cdkDrag
+                [cdkDragData]="contactEl">
+            <app-contact-item
+            [contact]="contactEl"
+            [index]="i"></app-contact-item>
+        </div>
     </div>
 </div>

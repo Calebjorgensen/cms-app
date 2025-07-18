@@ -19,6 +19,10 @@ import { DropdownDirective } from './shared/dropdown.directive';
 import { AppRoutingModule } from './app-routing.module';
 import { DocumentEditComponent } from './documents/document-edit/document-edit.component';
 import { ContactEditComponent } from './contacts/contact-edit/contact-edit.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DocumentService } from './documents/document.service';
+import { ContactService } from './contacts/contact.service';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -42,9 +46,12 @@ import { ContactEditComponent } from './contacts/contact-edit/contact-edit.compo
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    FormsModule,
+    ReactiveFormsModule,
+    AppRoutingModule,
+    DragDropModule
   ],
-  providers: [],
+  providers: [DocumentService, ContactService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
