@@ -15,26 +15,27 @@ export class ContactListComponent {
   
 
     contacts: Contact[] = [];
+    term: string = '';
 
     constructor(private contactService: ContactService) {}
 
 
 
-    ngOnInit() {
+ngOnInit() {
+  this.contactService.getContacts(); // just triggers the HTTP GET
 
-      this.contacts = this.contactService.getContacts();
+  this.subscription = this.contactService.contactListChangedEvent
+    .subscribe((contacts: Contact[]) => {
+      this.contacts = contacts;
+    });
+}
 
-      this.subscription = this.contactService.contactListChangedEvent
-        .subscribe(
-          (contacts: Contact[]) => {
-            this.contacts = contacts;
-          }
-        );
-
-      
-    }
 
     ngOnDestroy(): void {
       this.subscription.unsubscribe();
+    }
+
+    search(value:string){
+      this.term = value;
     }
 }

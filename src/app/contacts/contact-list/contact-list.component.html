@@ -1,13 +1,34 @@
 <div class="row">
-    <div class="col-xs-12">
-        <h2>Contacts</h2>
-        <button class="btn btn-success" [routerLink]="['new']" >New Contact</button>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="row">
+          <span class="title pad-left-right">Contacts</span>
+        </div>
+        <div class="row">
+          <div class="input-group pull-left pad-left-right col-xs-7">
+            <input 
+            #searchBox
+            type="text"
+            class="form-control"
+            placeholder="Enter a search value"
+            (keyup)="search(searchBox.value)">
+            <div class="glyphicon glyphicon-search input-group-addon" (click)="search(searchBox.value)"></div>
+          </div>
+          <div class="pull-right pad-left-right">
+            <a class="btn btn-success" [routerLink]="['new']">New Contact</a>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+</div>
 </div>
 <hr>
 <div class="row">
     <div class="col-xs-12">
-        <div *ngFor="let contactEl of contacts; let i = index"
+        <div *ngFor="let contactEl of contacts | contactsFilter:term; let i = index"
                 cdkDrag
                 [cdkDragData]="contactEl">
             <app-contact-item

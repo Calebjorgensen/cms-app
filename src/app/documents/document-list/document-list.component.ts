@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './document-list.component.html',
   styleUrl: './document-list.component.css'
 })
-export class DocumentListComponent {
+export class DocumentListComponent implements OnInit, OnDestroy {
 
 
   documents: Document[] = [];
@@ -22,16 +22,14 @@ export class DocumentListComponent {
 
   
 
-  ngOnInit() {
-    this.documents = this.documentService.getDocuments();
+ngOnInit() {
+  this.documentService.getDocuments(); // just triggers the HTTP GET
+  this.subscription = this.documentService.documentListChangedEvent
+    .subscribe((documents: Document[]) => {
+      this.documents = documents;
+    });
+}
 
-    this.subscription = this.documentService.documentListChangedEvent
-      .subscribe(
-        (documents: Document[]) => {
-          this.documents = documents;
-        }
-      );
-  }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
